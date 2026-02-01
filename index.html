@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="sv">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz App</title>
+
+    <link rel="stylesheet" href="style.css" />
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+  </head>
+
+  <body>
+    <header class="topbar">
+      <div class="container topbar-inner">
+        <div class="brand" aria-label="Quiz App">
+          <span class="brand-mark" aria-hidden="true">🧠</span>
+          <div class="brand-text">
+            <h1>Quiz App</h1>
+            <p class="muted">Välj ett quiz och få resultat direkt.</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- =========================
+           VIEW: HOME / STARTSIDA
+      ========================== -->
+      <section id="view-home" class="view">
+        <!-- Quiz-lista -->
+        <div class="panel">
+          <div class="panel-head">
+            <h2>Startsida</h2>
+            <p class="muted">
+              Välj ett quiz nedan. Alla quiz lagras i <strong>localStorage</strong>.
+            </p>
+          </div>
+
+          <div id="quiz-list" class="quiz-grid" aria-live="polite"></div>
+        </div>
+
+        <div class="create-box">
+  <h3>Skapa nytt quiz</h3>
+
+  <form id="create-quiz-form" class="create-form">
+    <div class="row">
+      <label>
+        Titel
+        <input id="new-title" type="text" placeholder="t.ex. Geografi Åk 4" required />
+      </label>
+
+      <label>
+        Beskrivning
+        <input id="new-desc" type="text" placeholder="Kort beskrivning" />
+      </label>
+    </div>
+
+    <hr class="sep" />
+
+    <!-- ✅ One-question form (re-used) -->
+    <p class="muted small">Lägg till minst 4 frågor. Varje fråga måste ha 4 alternativ.</p>
+
+    <label>
+      Fråga
+      <input id="new-q" type="text" placeholder="Skriv en fråga..." />
+    </label>
+
+    <div class="row-4">
+      <label>Alt 1 <input id="a1" type="text" /></label>
+      <label>Alt 2 <input id="a2" type="text" /></label>
+      <label>Alt 3 <input id="a3" type="text" /></label>
+      <label>Alt 4 <input id="a4" type="text" /></label>
+    </div>
+
+    <label>
+      Rätt svar
+      <select id="correct">
+        <option value="0">Alt 1</option>
+        <option value="1">Alt 2</option>
+        <option value="2">Alt 3</option>
+        <option value="3">Alt 4</option>
+      </select>
+    </label>
+
+    <div class="create-actions">
+      <button id="btn-add-question" class="btn" type="button">+ Lägg till fråga</button>
+      <button id="btn-clear-draft" class="btn" type="button">Rensa frågor</button>
+      <span id="draft-count" class="muted small">0 frågor tillagda</span>
+    </div>
+
+    <!-- preview list -->
+    <ol id="draft-list" class="draft-list"></ol>
+
+    <button id="btn-save-quiz" class="btn btn-primary" type="submit" disabled>
+      Spara quiz
+    </button>
+
+    <p id="create-msg" class="muted"></p>
+  </form>
+</div>
+
+      </section>
+
+      <!-- =========================
+           VIEW: QUIZ
+      ========================== -->
+      <section id="view-quiz" class="view hidden">
+        <div class="panel">
+          <div class="panel-head panel-head-row">
+            <div>
+              <h2 id="quiz-title">Quiz</h2>
+              <p id="quiz-desc" class="muted"></p>
+            </div>
+
+            <button id="btn-back" class="btn" type="button" aria-label="Tillbaka till startsidan">
+              ← Tillbaka
+            </button>
+          </div>
+
+          <form id="quiz-form" class="quiz-form" novalidate></form>
+        </div>
+      </section>
+
+      <!-- Modal (popup) -->
+      <div
+        id="modal"
+        class="modal hidden"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-title"
+      >
+        <div class="modal-backdrop" data-close="true"></div>
+
+        <div class="modal-card">
+          <div class="modal-head">
+            <h3 id="modal-title" class="modal-title">Resultat</h3>
+            <button id="modal-close" class="modal-close" type="button" aria-label="Stäng">
+              ✕
+            </button>
+          </div>
+
+          <div id="modal-body" class="modal-body"></div>
+
+          <div class="modal-actions">
+            <button id="modal-ok" class="btn btn-primary" type="button">OK</button>
+          </div>
+        </div>
+      </div>
+
+      <footer class="footer">
+        <p class="muted">Byggd med HTML, CSS och JavaScript · Data sparas i localStorage</p>
+      </footer>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
