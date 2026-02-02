@@ -15,7 +15,7 @@ Alla quiz lagras i localStorage i JSON-format
 
 Det går att skapa och spara nya quiz som visas på startsidan
 
-Logik (kort)
+Logik
 
 Quiz-data hämtas från localStorage och ritas ut dynamiskt med JavaScript.
 
@@ -33,3 +33,4 @@ Svara på alla frågor och klicka “Rätta quiz”
 
 Tekniker
 HTML, CSS, JavaScript, localStorage (JSON), Bootstrap Icons
+
